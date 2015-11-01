@@ -172,7 +172,7 @@ public:
  *  v.reserve(10);
  *  escape(v.data());
  */
-void escape(void *p) {
+static inline void escape(void *p) {
     asm volatile("" : : "g"(p) : "memory");
 }
 
@@ -188,7 +188,7 @@ void escape(void *p) {
  *  v.push_back(42);
  *  clobber(); // Ensure the integer pushed is read
  */
-void clobber() {
+static inline void clobber() {
     asm volatile("" : : : "memory");
 }
 
@@ -377,7 +377,7 @@ private:
 /*
  * The run_benchmarks function will run the registered benchmarks.
  */
-void run_benchmarks(const options& opts) {
+static inline void run_benchmarks(const options& opts) {
     std::regex match_r(opts.get_bench());
     auto benchmarks = registration::get_ptr()->get_benchmarks();
     for (auto& info : benchmarks) {
