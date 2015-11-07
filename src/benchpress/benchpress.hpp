@@ -224,9 +224,9 @@ public:
 
     std::string to_string() const {
         std::stringstream tmp;
-        tmp << std::setw(12) << std::right << d_num_iterations;
+        tmp << std::setw(15) << std::right << d_num_iterations;
         size_t npo = get_ns_per_op();
-        tmp << std::setw(12) << std::right << npo << std::setw(0) << " ns/op";
+        tmp << std::setw(5) << std::right << npo << std::setw(0) << " ns/op";
         double mbs = get_mb_per_s();
         if (mbs > 0.0) {
             tmp << std::setw(12) << std::right << mbs << std::setw(0) << " MB/s";
@@ -384,7 +384,7 @@ static inline void run_benchmarks(const options& opts) {
         if (std::regex_match(info.get_name(), match_r)) {
             context c(info, opts);
             auto r = c.run();
-            std::cout << std::setw(35) << std::left << info.get_name() << r.to_string() << std::endl;
+            std::cout << std::setw(25) << std::left << info.get_name() << r.to_string() << std::endl;
         }
     }
 }
